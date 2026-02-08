@@ -37,6 +37,8 @@ export const ChatbotScreen = () => {
                     style={styles.input}
                     underlineColor="transparent"
                     activeUnderlineColor="transparent"
+                    accessibilityLabel="Chat message input"
+                    accessibilityHint="Type your health or wellness question here"
                 />
                 <IconButton
                     icon="send"
@@ -44,6 +46,8 @@ export const ChatbotScreen = () => {
                     containerColor={theme.colors.primary}
                     iconColor="white"
                     onPress={() => setMessage('')}
+                    accessibilityLabel="Send message"
+                    accessibilityRole="button"
                 />
             </View>
 

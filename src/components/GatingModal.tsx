@@ -28,6 +28,8 @@ export const GatingModal: React.FC<GatingModalProps> = ({ visible, onConfirm, on
                             onPress={onConfirm}
                             style={styles.button}
                             labelStyle={styles.buttonLabel}
+                            accessibilityLabel="I am 18 years or older and I agree to the terms"
+                            accessibilityRole="button"
                         >
                             I am 18+ and I agree
                         </Button>
@@ -36,6 +38,8 @@ export const GatingModal: React.FC<GatingModalProps> = ({ visible, onConfirm, on
                             mode="text"
                             onPress={onCancel}
                             textColor={theme.colors.onSurfaceVariant}
+                            accessibilityLabel="Exit the application"
+                            accessibilityRole="button"
                         >
                             Exit
                         </Button>

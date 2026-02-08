@@ -3,9 +3,11 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, Card, Button, useTheme } from 'react-native-paper';
 import { GatingModal } from '../components/GatingModal';
 import { getStatusMessage, CycleData } from '../utils/cycleLogic';
+import { useAppTheme } from '../theme/ThemeProvider';
 
 export const HomeScreen = () => {
     const theme = useTheme();
+    const { themeMode, setThemeMode } = useAppTheme();
     const [isGated, setIsGated] = useState(true);
 
     // Mock cycle data - in a real app this would come from storage
@@ -56,10 +58,18 @@ export const HomeScreen = () => {
                 visible={isGated}
                 onConfirm={() => setIsGated(false)}
                 onCancel={() => {
-                    // Handle exit logic - maybe show a message or close app
+                    // Handle exit logic
                     console.log('User cancelled gating');
                 }}
             />
+
+            <Button
+                mode="text"
+                onPress={() => setThemeMode(themeMode === 'light' ? 'dark' : 'light')}
+                style={styles.themeToggle}
+            >
+                Switch to {themeMode === 'light' ? 'Dark' : 'Light'} Mode
+            </Button>
         </View>
     );
 };
@@ -95,5 +105,8 @@ const styles = StyleSheet.create({
     insightCard: {
         borderRadius: 16,
         backgroundColor: 'rgba(182, 166, 214, 0.1)', // Subtle Lavender Mist background
+    },
+    themeToggle: {
+        marginBottom: 24,
     },
 });
