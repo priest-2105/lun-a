@@ -13,7 +13,7 @@ export const GatingModal: React.FC<GatingModalProps> = ({ visible, onConfirm, on
 
     return (
         <Portal>
-            <Modal visible={visible} transparent animationType="fade">
+            <Modal visible={visible} transparent={true} animationType="fade">
                 <View style={styles.overlay}>
                     <View style={[styles.container, { backgroundColor: theme.colors.surface }]}>
                         <Text variant="headlineSmall" style={styles.title}>

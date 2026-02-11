@@ -35,7 +35,7 @@ export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onSelectDate
         <View style={styles.container}>
             <ScrollView
                 ref={scrollViewRef}
-                horizontal
+                horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >

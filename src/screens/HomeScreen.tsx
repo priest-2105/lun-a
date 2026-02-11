@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppTheme } from '../theme/ThemeProvider';
 import { DateStrip } from '../components/DateStrip';
 import { CycleProgress } from '../components/CycleProgress';
@@ -11,6 +12,7 @@ import { format } from 'date-fns';
 export const HomeScreen = () => {
     const theme = useTheme();
     const { themeMode } = useAppTheme();
+    const insets = useSafeAreaInsets();
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     // Mock data for now
@@ -20,7 +22,7 @@ export const HomeScreen = () => {
         periodLength: 5,
     };
 
-    const periodInDays = 28 - 20; // 8 days
+    const periodInDays = 28 - 20; 
     const currentDay = 21;
 
     const handleLogPeriod = () => {
@@ -36,7 +38,7 @@ export const HomeScreen = () => {
     };
 
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+        <View style={[styles.container, { backgroundColor: theme.colors.background, paddingTop: insets.top }]}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 <View style={styles.header}>
                     <Text variant="titleLarge" style={styles.greeting}>
@@ -79,7 +81,7 @@ export const HomeScreen = () => {
 
                 <View style={{ height: 20 }} />
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 

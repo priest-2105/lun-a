@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Text, TextInput, IconButton, useTheme, Card } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const ChatbotScreen = () => {
     const theme = useTheme();
     const [message, setMessage] = useState('');
+    const insets = useSafeAreaInsets();
 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={[styles.container, { backgroundColor: theme.colors.background }]}
         >
-            <View style={styles.header}>
+            <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
                 <Text variant="titleLarge" style={styles.headerTitle}>Wellness Assistant</Text>
                 <Text variant="bodySmall" style={styles.disclaimer}>
                     Educational only. Not medical advice. No diagnosis.
@@ -65,7 +67,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        paddingTop: 60,
         paddingHorizontal: 24,
         paddingBottom: 16,
         borderBottomWidth: 1,
