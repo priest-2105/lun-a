@@ -9,6 +9,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 
+import { AuthProvider } from './src/context/AuthContext';
+
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
@@ -42,10 +44,12 @@ function MainApp() {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <ThemeProvider>
-        <StatusBar style="dark" translucent={true} backgroundColor="transparent" />
-        <MainApp />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <StatusBar style="dark" translucent={true} backgroundColor="transparent" />
+          <MainApp />
+        </ThemeProvider>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

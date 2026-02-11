@@ -2,6 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from '../screens/HomeScreen';
 import { ChatbotScreen } from '../screens/ChatbotScreen';
+import { ProfileScreen } from '../screens/ProfileScreen';
+import { AuthNavigator } from './AuthNavigator';
+import { useAuth } from '../context/AuthContext';
 import { useTheme } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -9,6 +12,11 @@ const Tab = createBottomTabNavigator();
 
 export const RootNavigator = () => {
     const theme = useTheme();
+    const { isAuthenticated } = useAuth();
+
+    if (!isAuthenticated) {
+        return <AuthNavigator />;
+    }
 
     return (
         <Tab.Navigator
@@ -21,6 +29,8 @@ export const RootNavigator = () => {
                         iconName = 'calendar-month';
                     } else if (route.name === 'Assistant') {
                         iconName = 'message-outline';
+                    } else if (route.name === 'Profile') {
+                        iconName = 'account-outline';
                     }
 
                     return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
@@ -42,6 +52,7 @@ export const RootNavigator = () => {
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Assistant" component={ChatbotScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     );
 };
